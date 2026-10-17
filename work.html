@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work — Your Name</title>
+  <meta name="description" content="Selected projects and case studies by Your Name." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="index.html" class="nav__brand">
+        <span class="nav__brand-mark">Y</span>
+        <span>Your Name</span>
+      </a>
+      <nav class="nav__links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="work.html" class="is-active">Work</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="section">
+      <div class="container">
+        <header class="section__head reveal">
+          <h1 class="section__title">Work</h1>
+          <p class="section__desc">Case studies and shipped projects. Each one started as a mess and ended as software someone actually uses.</p>
+        </header>
+
+        <div class="grid grid--work">
+          <article class="card reveal" data-tilt>
+            <div class="card__media card__media--a"><span class="card__badge">Web App</span></div>
+            <div class="card__body">
+              <h2 class="card__title">Project One</h2>
+              <p class="card__text">A short description of what this project does, the problem it solved, and the impact it had. Replace with the real story.</p>
+              <ul class="tags"><li>React</li><li>TypeScript</li><li>Postgres</li></ul>
+              <a class="card__link" href="#">View case study</a>
+            </div>
+          </article>
+          <article class="card reveal" data-tilt>
+            <div class="card__media card__media--b"><span class="card__badge">Open Source</span></div>
+            <div class="card__body">
+              <h2 class="card__title">Project Two</h2>
+              <p class="card__text">A tool or library you maintain. Explain why you built it, who uses it, and what makes it useful.</p>
+              <ul class="tags"><li>Python</li><li>CLI</li></ul>
+              <a class="card__link" href="#">View case study</a>
+            </div>
+          </article>
+          <article class="card reveal" data-tilt>
+            <div class="card__media card__media--c"><span class="card__badge">Design</span></div>
+            <div class="card__body">
+              <h2 class="card__title">Project Three</h2>
+              <p class="card__text">A design or product initiative. Describe the role you played and the outcome you drove.</p>
+              <ul class="tags"><li>Figma</li><li>Design System</li></ul>
+              <a class="card__link" href="#">View case study</a>
+            </div>
+          </article>
+          <article class="card reveal" data-tilt>
+            <div class="card__media card__media--a"><span class="card__badge">Mobile</span></div>
+            <div class="card__body">
+              <h2 class="card__title">Project Four</h2>
+              <p class="card__text">A mobile app or responsive product. Describe the constraints and how you solved them.</p>
+              <ul class="tags"><li>React Native</li><li>Expo</li></ul>
+              <a class="card__link" href="#">View case study</a>
+            </div>
+          </article>
+          <article class="card reveal" data-tilt>
+            <div class="card__media card__media--b"><span class="card__badge">API</span></div>
+            <div class="card__body">
+              <h2 class="card__title">Project Five</h2>
+              <p class="card__text">A backend service or API. Explain the scale, reliability, and the tradeoffs you made.</p>
+              <ul class="tags"><li>Node.js</li><li>Postgres</li><li>Redis</li></ul>
+              <a class="card__link" href="#">View case study</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year">2026</span> Your Name. All rights reserved.</p>
+      <p class="footer__built">Built with plain HTML, CSS &amp; JavaScript.</p>
+    </div>
+  </footer>
+  <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+  <script src="assets/main.js"></script>
+</body>
+</html>

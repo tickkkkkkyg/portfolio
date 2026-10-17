@@ -813,6 +813,8 @@ ul { list-style: none; padding: 0; }
    RESPONSIVE
    ========================================================= */
 @media (max-width: 960px) {
+  .principles { grid-template-columns: 1fr; }
+  .contact-page { grid-template-columns: 1fr; gap: var(--space-8); }
   .grid--work { grid-template-columns: 1fr; }
   .grid--work .card:first-child { grid-row: auto; }
   .card:first-child .card__media { aspect-ratio: 16 / 10; }
@@ -846,6 +848,105 @@ ul { list-style: none; padding: 0; }
   .hero__actions .btn { flex: 1 1 auto; }
   .footer__inner { justify-content: center; text-align: center; }
   .skills { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   BLOG
+   ========================================================= */
+.blog-list { display: grid; gap: var(--space-8); max-width: 760px; }
+.blog-card {
+  padding: var(--space-6) 0;
+  border-bottom: 1px solid var(--line-subtle);
+}
+.blog-card:last-child { border-bottom: 0; }
+.blog-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-xs);
+  color: var(--ink-secondary);
+  margin-bottom: var(--space-3);
+  font-family: var(--font-data);
+}
+.blog-card__tag {
+  color: var(--accent);
+  border: 1px solid var(--accent-quiet);
+  background: var(--accent-quiet);
+  padding: 2px 8px;
+  border-radius: var(--radius-tight);
+}
+.blog-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: var(--leading-snug);
+  margin-bottom: var(--space-2);
+}
+.blog-card__title a { transition: color var(--dur-micro); }
+.blog-card__title a:hover { color: var(--accent); }
+.blog-card__excerpt { color: var(--ink-secondary); margin-bottom: var(--space-3); max-width: 60ch; }
+
+/* =========================================================
+   POST
+   ========================================================= */
+.post { max-width: 720px; margin-inline: auto; }
+.post__head { margin-bottom: var(--space-8); }
+.post__meta { font-family: var(--font-data); font-size: var(--text-xs); color: var(--ink-secondary); margin-bottom: var(--space-4); }
+.post__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: var(--leading-snug);
+  margin-bottom: var(--space-4);
+}
+.post__lede { font-size: var(--text-lg); color: var(--ink-secondary); line-height: var(--leading-prose); }
+.post__body { font-size: var(--text-base); line-height: var(--leading-prose); color: var(--ink-primary); }
+.post__body p { margin-bottom: var(--space-4); max-width: var(--max-prose); }
+.post__body h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 500;
+  margin: var(--space-8) 0 var(--space-3);
+  letter-spacing: -0.01em;
+}
+.post__foot { margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--line-subtle); }
+
+/* =========================================================
+   PRINCIPLES (about)
+   ========================================================= */
+.principles { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); margin-top: var(--space-6); }
+.principle {
+  padding: var(--space-6);
+  border: 1px solid rgba(251, 249, 243, 0.12);
+  border-radius: var(--radius-panel);
+  background: rgba(251, 249, 243, 0.04);
+}
+.principle__num { font-family: var(--font-data); font-size: var(--text-xs); color: var(--accent-quiet); display: block; margin-bottom: var(--space-3); }
+.principle h3 { font-family: var(--font-display); font-size: var(--text-lg); font-weight: 500; margin-bottom: var(--space-2); }
+.principle p { color: rgba(251, 249, 243, 0.65); font-size: var(--text-sm); }
+
+/* =========================================================
+   CONTACT PAGE
+   ========================================================= */
+.contact-page { display: grid; grid-template-columns: 1fr 1.1fr; gap: var(--space-12); align-items: start; }
+.contact-details { margin-top: var(--space-8); display: grid; gap: var(--space-3); }
+.contact-details li { display: flex; justify-content: space-between; gap: var(--space-4); padding: var(--space-3) 0; border-bottom: 1px dashed var(--line-subtle); font-size: var(--text-sm); }
+.contact-details li span { color: var(--ink-secondary); }
+.contact-details li a { color: var(--accent); font-weight: 500; }
+.contact-details li a:hover { color: var(--accent-hover); }
+
+/* =========================================================
+   RESPONSIVE (late overrides for components defined after the
+   earlier media queries)
+   ========================================================= */
+@media (max-width: 960px) {
+  .principles { grid-template-columns: 1fr; }
+  .contact-page { grid-template-columns: 1fr; gap: var(--space-8); }
+}
+@media (max-width: 680px) {
+  .blog-card__title { font-size: var(--text-xl); }
 }
 
 /* =========================================================

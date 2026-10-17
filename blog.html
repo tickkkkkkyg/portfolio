@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Your Name</title>
+  <meta name="description" content="Writing by Your Name on software, design, and the web." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="index.html" class="nav__brand">
+        <span class="nav__brand-mark">Y</span>
+        <span>Your Name</span>
+      </a>
+      <nav class="nav__links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="blog.html" class="is-active">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="section">
+      <div class="container">
+        <header class="section__head reveal">
+          <h1 class="section__title">Blog</h1>
+          <p class="section__desc">Notes on building software, design decisions, and things I learned the hard way.</p>
+        </header>
+
+        <div class="blog-list">
+          <article class="blog-card reveal">
+            <div class="blog-card__meta">
+              <time datetime="2026-10-01">Oct 1, 2026</time>
+              <span class="blog-card__tag">Engineering</span>
+            </div>
+            <h2 class="blog-card__title"><a href="blog/hello-world.html">Why I rewrote my portfolio from scratch</a></h2>
+            <p class="blog-card__excerpt">The old one was fine. Fine is the enemy of memorable. Here's what changed and why.</p>
+            <a class="card__link" href="blog/hello-world.html">Read post</a>
+          </article>
+
+          <article class="blog-card reveal">
+            <div class="blog-card__meta">
+              <time datetime="2026-09-12">Sep 12, 2026</time>
+              <span class="blog-card__tag">Design</span>
+            </div>
+            <h2 class="blog-card__title"><a href="#">Motion is a statement about hierarchy</a></h2>
+            <p class="blog-card__excerpt">If you can't name what the animation is telling the user, delete it. A field guide to purposeful motion.</p>
+            <a class="card__link" href="#">Read post</a>
+          </article>
+
+          <article class="blog-card reveal">
+            <div class="blog-card__meta">
+              <time datetime="2026-08-28">Aug 28, 2026</time>
+              <span class="blog-card__tag">Accessibility</span>
+            </div>
+            <h2 class="blog-card__title"><a href="#">Contrast is a content decision, not a polish step</a></h2>
+            <p class="blog-card__excerpt">Secondary ink on the wrong surface fails silently. How I audit contrast in one place.</p>
+            <a class="card__link" href="#">Read post</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year">2026</span> Your Name. All rights reserved.</p>
+      <p class="footer__built">Built with plain HTML, CSS &amp; JavaScript.</p>
+    </div>
+  </footer>
+  <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+  <script src="assets/main.js"></script>
+</body>
+</html>

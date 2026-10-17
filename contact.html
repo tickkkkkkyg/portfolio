@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Your Name</title>
+  <meta name="description" content="Get in touch with Your Name." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="index.html" class="nav__brand">
+        <span class="nav__brand-mark">Y</span>
+        <span>Your Name</span>
+      </a>
+      <nav class="nav__links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="is-active">Contact</a>
+      </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="section">
+      <div class="container contact-page">
+        <div class="contact-page__intro reveal">
+          <h1 class="section__title">Let's work together</h1>
+          <p class="contact__intro">
+            Have a project, a question, or just want to say hi? My inbox is open.
+            I usually reply within a day.
+          </p>
+          <ul class="contact-details">
+            <li><span>Email</span><a href="mailto:you@example.com">you@example.com</a></li>
+            <li><span>Based in</span><strong>Your City</strong></li>
+            <li><span>Availability</span><strong>Open to freelance &amp; full-time</strong></li>
+          </ul>
+        </div>
+
+        <form class="form reveal" id="contactForm" novalidate>
+          <div class="form__row">
+            <label class="field">
+              <span>Name</span>
+              <input type="text" name="name" placeholder="Your name" required />
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </label>
+          </div>
+          <label class="field">
+            <span>Subject</span>
+            <input type="text" name="subject" placeholder="What's this about?" />
+          </label>
+          <label class="field">
+            <span>Message</span>
+            <textarea name="message" rows="6" placeholder="Tell me about your project…" required></textarea>
+          </label>
+          <button class="btn btn--primary" type="submit" data-magnetic>Send message</button>
+          <p class="form__note" id="formNote" role="status"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <h2 class="section__title reveal">Elsewhere</h2>
+        <ul class="socials reveal">
+          <li><a href="#" aria-label="GitHub" data-magnetic>GitHub</a></li>
+          <li><a href="#" aria-label="LinkedIn" data-magnetic>LinkedIn</a></li>
+          <li><a href="#" aria-label="Twitter" data-magnetic>Twitter</a></li>
+          <li><a href="mailto:you@example.com" aria-label="Email" data-magnetic>Email</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year">2026</span> Your Name. All rights reserved.</p>
+      <p class="footer__built">Built with plain HTML, CSS &amp; JavaScript.</p>
+    </div>
+  </footer>
+  <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+  <script src="assets/main.js"></script>
+</body>
+</html>
