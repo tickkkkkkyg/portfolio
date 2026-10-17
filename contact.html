@@ -3,97 +3,148 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Your Name</title>
-  <meta name="description" content="Get in touch with Your Name." />
+  <title>Book a visit — Bipna Budha, Dentist in Kathmandu</title>
+  <meta name="description" content="Request an appointment with Bipna Budha, general dentist in Kathmandu. Get an itemised estimate by email before you commit." />
+  <meta name="theme-color" content="#F6F5F2" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='.85em' font-size='26' font-family='Georgia,serif'>B</text></svg>" />
 </head>
 <body>
-  <div class="cursor" aria-hidden="true"></div>
-  <div class="cursor-dot" aria-hidden="true"></div>
-  <div class="scroll-progress" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="nav" id="nav">
-    <div class="nav__inner container">
-      <a href="index.html" class="nav__brand">
-        <span class="nav__brand-mark">Y</span>
-        <span>Your Name</span>
-      </a>
-      <nav class="nav__links" id="navLinks">
+  <header class="masthead" id="masthead">
+    <div class="masthead__inner shell">
+      <a href="index.html" class="masthead__brand">Bipna Budha <small>Dentist</small></a>
+      <nav class="masthead__links" id="menu" aria-label="Main">
         <a href="index.html">Home</a>
-        <a href="work.html">Work</a>
-        <a href="blog.html">Blog</a>
+        <a href="practice.html">Practice</a>
         <a href="about.html">About</a>
-        <a href="contact.html" class="is-active">Contact</a>
+        <a href="journal.html">Journal</a>
+        <a href="contact.html" class="masthead__cta" aria-current="page">Book a visit</a>
       </nav>
-      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <button class="masthead__toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
-  <main id="top">
-    <section class="section">
-      <div class="container contact-page">
-        <div class="contact-page__intro reveal">
-          <h1 class="section__title">Let's work together</h1>
-          <p class="contact__intro">
-            Have a project, a question, or just want to say hi? My inbox is open.
-            I usually reply within a day.
-          </p>
-          <ul class="contact-details">
-            <li><span>Email</span><a href="mailto:you@example.com">you@example.com</a></li>
-            <li><span>Based in</span><strong>Your City</strong></li>
-            <li><span>Availability</span><strong>Open to freelance &amp; full-time</strong></li>
-          </ul>
+  <main id="main">
+    <section class="section page-top">
+      <div class="shell booking">
+        <div>
+          <header class="section__head" data-enter>
+            <span class="section__eyebrow">Appointment</span>
+            <h1 class="section__title">Request a visit</h1>
+            <p class="section__lede">
+              Send a short note and I will reply with available slots and an itemised estimate
+              before you commit to anything. If you are in pain, say so in the message and I will
+              try to fit you in the same day.
+            </p>
+          </header>
+
+          <div class="booking__details" data-reveal>
+            <div class="booking__block">
+              <span class="k">Email</span>
+              <span class="v"><a href="mailto:hello@bipnabudha.com.np">hello@bipnabudha.com.np</a></span>
+            </div>
+            <div class="booking__block">
+              <span class="k">Phone</span>
+              <span class="v"><a href="tel:+97714412345">+977 1 441 2345</a></span>
+            </div>
+            <div class="booking__block">
+              <span class="k">Practice</span>
+              <span class="v">Lalitpur, Kathmandu Valley</span>
+            </div>
+            <div class="booking__block">
+              <span class="k">Consulting hours</span>
+              <span class="v">Sunday to Friday, 9:00–18:00 · Saturday morning</span>
+            </div>
+          </div>
+
+          <div class="state state--spaced" data-reveal>
+            <h2 class="state__title">Would rather just walk in?</h2>
+            <p>
+              The practice is open from 9am on weekdays and there is usually room for an
+              examination if you call ahead. Ring and ask for a same-day slot.
+            </p>
+          </div>
         </div>
 
-        <form class="form reveal" id="contactForm" novalidate>
+        <form class="form" id="bookingForm" novalidate data-reveal>
           <div class="form__row">
             <label class="field">
               <span>Name</span>
-              <input type="text" name="name" placeholder="Your name" required />
+              <input type="text" name="name" autocomplete="name" required />
+              <span class="field__error"></span>
             </label>
             <label class="field">
               <span>Email</span>
-              <input type="email" name="email" placeholder="you@example.com" required />
+              <input type="email" name="email" autocomplete="email" required />
+              <span class="field__error"></span>
             </label>
           </div>
-          <label class="field">
-            <span>Subject</span>
-            <input type="text" name="subject" placeholder="What's this about?" />
-          </label>
-          <label class="field">
-            <span>Message</span>
-            <textarea name="message" rows="6" placeholder="Tell me about your project…" required></textarea>
-          </label>
-          <button class="btn btn--primary" type="submit" data-magnetic>Send message</button>
-          <p class="form__note" id="formNote" role="status"></p>
-        </form>
-      </div>
-    </section>
 
-    <section class="section section--alt">
-      <div class="container">
-        <h2 class="section__title reveal">Elsewhere</h2>
-        <ul class="socials reveal">
-          <li><a href="#" aria-label="GitHub" data-magnetic>GitHub</a></li>
-          <li><a href="#" aria-label="LinkedIn" data-magnetic>LinkedIn</a></li>
-          <li><a href="#" aria-label="Twitter" data-magnetic>Twitter</a></li>
-          <li><a href="mailto:you@example.com" aria-label="Email" data-magnetic>Email</a></li>
-        </ul>
+          <div class="form__row">
+            <label class="field">
+              <span>Phone</span>
+              <input type="tel" name="phone" autocomplete="tel" placeholder="Optional" />
+              <span class="field__error"></span>
+            </label>
+            <label class="field">
+              <span>Reason for visit</span>
+              <select name="reason">
+                <option>Check-up and cleaning</option>
+                <option>Toothache or infection</option>
+                <option>Filling or root canal</option>
+                <option>Crown or bridge</option>
+                <option>Gum treatment</option>
+                <option>Whitening or veneers</option>
+                <option>Child's check-up</option>
+                <option>Not sure yet</option>
+              </select>
+              <span class="field__error"></span>
+            </label>
+          </div>
+
+          <label class="field">
+            <span>What is going on?</span>
+            <textarea name="message" rows="6" required></textarea>
+            <span class="field__hint">A sentence or two is enough. Mention anything that makes you nervous and I will plan around it.</span>
+            <span class="field__error"></span>
+          </label>
+
+          <button class="btn btn--solid" type="submit">Send request</button>
+          <p class="form__note" id="formNote" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="container footer__inner">
-      <p>© <span id="year">2026</span> Your Name. All rights reserved.</p>
-      <p class="footer__built">Built with plain HTML, CSS &amp; JavaScript.</p>
+    <div class="shell">
+      <div class="footer__top">
+        <div>
+          <p class="footer__name">Bipna Budha</p>
+          <p class="footer__role">BDS · General dental practice · Kathmandu, Nepal</p>
+        </div>
+        <nav class="footer__links" aria-label="Footer">
+          <a href="practice.html">Practice</a>
+          <a href="about.html">About</a>
+          <a href="journal.html">Journal</a>
+          <a href="contact.html">Book a visit</a>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span id="year">2026</span> Bipna Budha. All rights reserved.</p>
+        <p>Registered with the Nepal Medical Council.</p>
+      </div>
     </div>
   </footer>
+
   <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
   <script src="assets/main.js"></script>
 </body>

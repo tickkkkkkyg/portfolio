@@ -3,108 +3,153 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — Your Name</title>
-  <meta name="description" content="About Your Name — developer, designer, human." />
+  <title>About — Bipna Budha, Dentist in Kathmandu</title>
+  <meta name="description" content="Bipna Budha is a general dentist in Kathmandu with nine years of practice, focused on making dental appointments less frightening and more predictable." />
+  <meta name="theme-color" content="#F6F5F2" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='.85em' font-size='26' font-family='Georgia,serif'>B</text></svg>" />
 </head>
 <body>
-  <div class="cursor" aria-hidden="true"></div>
-  <div class="cursor-dot" aria-hidden="true"></div>
-  <div class="scroll-progress" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="nav" id="nav">
-    <div class="nav__inner container">
-      <a href="index.html" class="nav__brand">
-        <span class="nav__brand-mark">Y</span>
-        <span>Your Name</span>
-      </a>
-      <nav class="nav__links" id="navLinks">
+  <header class="masthead" id="masthead">
+    <div class="masthead__inner shell">
+      <a href="index.html" class="masthead__brand">Bipna Budha <small>Dentist</small></a>
+      <nav class="masthead__links" id="menu" aria-label="Main">
         <a href="index.html">Home</a>
-        <a href="work.html">Work</a>
-        <a href="blog.html">Blog</a>
-        <a href="about.html" class="is-active">About</a>
-        <a href="contact.html">Contact</a>
+        <a href="practice.html">Practice</a>
+        <a href="about.html" aria-current="page">About</a>
+        <a href="journal.html">Journal</a>
+        <a href="contact.html" class="masthead__cta">Book a visit</a>
       </nav>
-      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <button class="masthead__toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="menu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
-  <main id="top">
-    <section class="section">
-      <div class="container about">
-        <div class="about__text">
-          <h1 class="section__title reveal">A bit about me</h1>
-          <p class="reveal">
-            I started out tinkering with code because I wanted to see how things worked.
-            That curiosity turned into a career building products for the web.
-          </p>
-          <p class="reveal">
-            These days I care deeply about <strong>performance</strong>, <strong>accessibility</strong>,
-            and writing code that the next person can actually understand. I believe the best
-            software feels invisible — it just works, and it's fast.
-          </p>
-          <p class="reveal">
-            Outside of work you'll find me hiking, reading,
-            or tinkering with a new side project that will probably never ship.
-          </p>
-          <a href="contact.html" class="btn btn--ghost reveal" data-magnetic>Get in touch</a>
+  <main id="main">
+    <section class="section page-top">
+      <div class="shell about">
+        <div>
+          <header class="section__head section__head--wide" data-enter>
+            <span class="section__eyebrow">About</span>
+            <h1 class="section__title">I would rather you were comfortable than impressed</h1>
+          </header>
+
+          <div class="prose" data-reveal>
+            <p>
+              I trained in Kathmandu and have practised general dentistry here for nine years.
+              Most of what I see is not dramatic: a tooth that has been getting worse for a year
+              while somebody was working up the courage to mention it.
+            </p>
+            <p>
+              That pattern shaped how I work. I would rather spend the first ten minutes of an
+              appointment on an examination and an explanation than on drilling. People who know
+              what is happening in their own mouth tolerate a great deal more of it.
+            </p>
+            <p>
+              A large share of my patients were nervous patients first, and patients second. The
+              pace of an appointment is theirs to set. Some people manage one drill and need to
+              leave. I would far rather split the work across three visits than rush one and have
+              you never come back.
+            </p>
+            <p>
+              I keep to general dentistry: fillings, root canals, crowns, gum treatment and the
+              preventive care that makes the rest unnecessary. For anything involving surgery,
+              orthodontics or very complex cases I refer on, and I will tell you that in the first
+              appointment rather than the fifth.
+            </p>
+            <p>
+              Outside the practice I am usually somewhere in the Valley with a camera, or reading
+              about restorative work that I do not yet have the equipment for.
+            </p>
+          </div>
         </div>
 
-        <aside class="about__card reveal">
-          <div class="avatar">YN</div>
-          <h2 class="about__name">Your Name</h2>
-          <p class="about__role">Developer · Designer · Human</p>
-          <ul class="facts">
-            <li><span>Based in</span><strong>Your City</strong></li>
-            <li><span>Focus</span><strong>Web &amp; Product</strong></li>
-            <li><span>Currently</span><strong>Building at Your Company</strong></li>
-            <li><span>Learning</span><strong>Rust</strong></li>
-            <li><span>Open to</span><strong>Freelance &amp; full-time</strong></li>
+        <aside data-reveal>
+          <div class="portrait">
+            <span class="portrait__initials" aria-hidden="true">BB</span>
+          </div>
+
+          <ul class="credentials">
+            <li><span class="k">Qualification</span><span class="v">BDS</span></li>
+            <li><span class="k">Registered</span><span class="v">Nepal Medical Council</span></li>
+            <li><span class="k">Practising since</span><span class="v">2017</span></li>
+            <li><span class="k">Practice</span><span class="v">Kathmandu, Nepal</span></li>
+            <li><span class="k">Languages</span><span class="v">Nepali, English, Hindi</span></li>
+            <li><span class="k">Consulting</span><span class="v">Weekdays 9–18, Sat morning</span></li>
           </ul>
         </aside>
       </div>
     </section>
 
-    <section class="section section--inverse">
-      <div class="container">
-        <h2 class="section__title reveal">How I work</h2>
-        <div class="principles">
-          <div class="principle reveal">
-            <span class="principle__num">01</span>
-            <h3>Ship small, ship often</h3>
-            <p>Small changes are reviewable, testable, and reversible. Big bangs are not.</p>
-          </div>
-          <div class="principle reveal">
-            <span class="principle__num">02</span>
-            <h3>Performance is a feature</h3>
-            <p>If it's slow, it's broken. Budgets are enforced in CI, not hoped for.</p>
-          </div>
-          <div class="principle reveal">
-            <span class="principle__num">03</span>
-            <h3>Accessibility is not optional</h3>
-            <p>Semantic HTML first, ARIA when needed, keyboard always. Tested, not assumed.</p>
-          </div>
-          <div class="principle reveal">
-            <span class="principle__num">04</span>
-            <h3>Write for the next person</h3>
-            <p>Code is read more than it's written. Names, tests, and docs are the work.</p>
-          </div>
+    <section class="section section--tint">
+      <div class="shell">
+        <header class="section__head section__head--wide" data-reveal>
+          <span class="section__eyebrow">In the chair</span>
+          <h2 class="section__title">What you can expect</h2>
+        </header>
+
+        <div class="services" data-reveal>
+          <article class="service">
+            <p class="service__num">01</p>
+            <div>
+              <h3 class="service__name">The first ten minutes are talking</h3>
+              <p class="service__desc">What is bothering you, what you have tried, what worries you. Then an examination with your mouth open for about five minutes.</p>
+            </div>
+          </article>
+          <article class="service">
+            <p class="service__num">02</p>
+            <div>
+              <h3 class="service__name">I show you what I found</h3>
+              <p class="service__desc">Photos on the screen, in plain language, with what it would cost to fix and what happens if you leave it a while longer.</p>
+            </div>
+          </article>
+          <article class="service">
+            <p class="service__num">03</p>
+            <div>
+              <h3 class="service__name">You decide the order</h3>
+              <p class="service__desc">Urgent work first, cosmetic work later, and often not at all. A written plan goes home with you either way.</p>
+            </div>
+          </article>
+          <article class="service">
+            <p class="service__num">04</p>
+            <div>
+              <h3 class="service__name">Your hand stops everything</h3>
+              <p class="service__desc">Raise it and I stop. No comment, no persuasion. Most of my nervous patients need this agreed on before we begin.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="container footer__inner">
-      <p>© <span id="year">2026</span> Your Name. All rights reserved.</p>
-      <p class="footer__built">Built with plain HTML, CSS &amp; JavaScript.</p>
+    <div class="shell">
+      <div class="footer__top">
+        <div>
+          <p class="footer__name">Bipna Budha</p>
+          <p class="footer__role">BDS · General dental practice · Kathmandu, Nepal</p>
+        </div>
+        <nav class="footer__links" aria-label="Footer">
+          <a href="practice.html">Practice</a>
+          <a href="about.html">About</a>
+          <a href="journal.html">Journal</a>
+          <a href="contact.html">Book a visit</a>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span id="year">2026</span> Bipna Budha. All rights reserved.</p>
+        <p>Registered with the Nepal Medical Council.</p>
+      </div>
     </div>
   </footer>
+
   <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
   <script src="assets/main.js"></script>
 </body>
