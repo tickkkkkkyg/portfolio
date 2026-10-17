@@ -92,6 +92,50 @@
 
     items.forEach((el) => io.observe(el));
   }
+
+  /* ---------- Hero 3D mouse parallax ----------
+     Layers drift at different depths following the pointer,
+     giving a gentle dimensional feel without WebGL. */
+  if (!reduceMotion) {
+    const hero = $(".hero");
+    const layers = $$(".hero__layer", hero);
+    if (hero && layers.length) {
+      hero.addEventListener("mousemove", (e) => {
+        const r = hero.getBoundingClientRect();
+        const cx = (e.clientX - r.left) / r.width - 0.5;
+        const cy = (e.clientY - r.top) / r.height - 0.5;
+        layers.forEach((el) => {
+          const z = parseFloat(el.dataset.z || 0);
+          const strength = z / 40;
+          const x = cx * 12 * strength;
+          const y = cy * 12 * strength;
+          el.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
+        });
+      });
+      hero.addEventListener("mouseleave", () => {
+        layers.forEach((el) => {
+          el.style.transform = `translateZ(${el.dataset.z || 0}px)`;
+        });
+      });
+    }
+  }
+
+  /* ---------- Card tilt (service rows, principles, journal entries) ----------
+     Subtle rotate on pointer over each element, restrained to a few degrees. */
+  if (!reduceMotion) {
+    const tiltables = $$(".service, .principle, .entry");
+    tiltables.forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `perspective(var(--perspective)) rotateX(${-y * 4}deg) rotateY(${x * 4}deg)`;
+      });
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "";
+      });
+    });
+  }
   /* Reveal is owned by JS so the fallback is always available and the
      scroll-driven enhancement never leaves anything stuck invisible. */
   function playReveal() {
