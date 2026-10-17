@@ -803,13 +803,14 @@ html.js [data-enter] {
 }
 html.js [data-enter].is-in { opacity: 1; transform: none; }
 
-@media (prefers-reduced-motion: no-preference) {
-  .hero [data-enter] { transition-delay: var(--enter-delay, 0ms); }
+/* Cinematic character reveal for the hero title */
+.char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(14px);
 }
 
-/* scroll-linked reveal where supported */
-/* Scroll reveal. Hidden state only applies when JS is running, so the page is
-   fully readable if the script fails or is blocked. */
+/* scroll reveal. Hidden state only applies when JS is running. */
 html.js [data-reveal] {
   opacity: 0;
   transform: translateY(16px);

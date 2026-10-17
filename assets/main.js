@@ -61,36 +61,89 @@
     wide.addEventListener("change", (e) => { if (e.matches) setOpen(false); });
   }
 
-  /* ---------- Page-load entrance ----------
-     One orchestrated beat: hero elements rise in sequence,
-     paced generously so the page settles rather than snaps. */
-  function playEntrance(root) {
-    const items = $$("[data-enter]", root).filter((el) => !el.dataset.enterDone);
-    if (!items.length) return;
+  /* ---------- Text → character spans ----------
+     Wraps every text node in .char spans so the hero title can reveal
+     one letter at a time. Safe to run once; idempotent. */
+  function splitIntoChars(el) {
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+    const nodes = [];
+    let node;
+    while ((node = walker.nextNode())) nodes.push(node);
 
-    const show = (el) => {
-      el.classList.add("is-in");
-      el.dataset.enterDone = "1";
-    };
+    nodes.forEach((tn) => {
+      const text = tn.textContent;
+      if (!text.trim()) return;
+      const frag = document.createDocumentFragment();
+      [...text].forEach((ch) => {
+        const sp = document.createElement("span");
+        sp.className = "char";
+        sp.textContent = ch === " " ? "\u00A0" : ch;
+        sp.style.display = "inline-block";
+        frag.appendChild(sp);
+      });
+      tn.parentNode.replaceChild(frag, tn);
+    });
+  }
 
-    if (reduceMotion || !("IntersectionObserver" in window)) {
-      items.forEach(show);
+  /* ---------- Cinematic hero entrance ----------
+     One orchestrated beat: role line → title letters (staggered) →
+     subtitle → actions → stats. Slow and calm, paced like a breath.
+     Uses transform + opacity only (animation-motion law 1). */
+  async function cinematicIntro(root) {
+    if (reduceMotion) {
+      $$("[data-enter]", root).forEach((el) => el.classList.add("is-in"));
       return;
     }
 
-    items.forEach((el, i) => {
-      el.style.setProperty("--enter-delay", i * 130 + "ms");
-    });
+    const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
 
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        show(entry.target);
-        io.unobserve(entry.target);
-      });
-    }, { threshold: 0.2 });
+    async function reveal(el, { delay = 0, duration = 520, fromY = 14, stagger = 0 } = {}) {
+      if (!el) return;
+      const chars = $$(".char", el);
+      if (chars.length) {
+        // Make the parent visible so the animated child characters can be seen.
+        el.style.opacity = '1';
+        await Promise.all(
+          chars.map((span, i) =>
+            span.animate(
+              [{ opacity: 0, transform: `translateY(${fromY}px)` },
+               { opacity: 1, transform: "none" }],
+              {
+                duration,
+                delay: delay + i * stagger,
+                easing: EASE,
+                fill: "both",
+              }
+            ).finished
+          )
+        );
+      } else {
+        await el.animate(
+          [{ opacity: 0, transform: `translateY(${fromY}px)` },
+           { opacity: 1, transform: "none" }],
+          { duration, delay, easing: EASE, fill: "both" }
+        ).finished;
+      }
+    }
 
-    items.forEach((el) => io.observe(el));
+    const role = $(".hero__role", root);
+    const title = $(".hero__name", root);
+    const lede = $(".hero__lede", root);
+    const actions = $(".hero__actions", root);
+    const assurance = $(".hero__assurance", root);
+
+    // Split the hero title into characters (letters inside <em> included)
+    if (title) splitIntoChars(title);
+
+    // One orchestrated sequence; each phase overlaps the previous by ~150ms
+    await reveal(role, { delay: 60 });            // enters first
+    await reveal(title, { delay: 180, stagger: 40 }); // letters cascade
+    await reveal(lede, { delay: 320 });           // overlaps title tail
+    await reveal(actions, { delay: 460 });        // overlaps lede tail
+    await reveal(assurance, { delay: 600 });      // settles last
+
+    // Mark everything done so CSS transitions don't re-trigger
+    $$("[data-enter]", root).forEach((el) => el.classList.add("is-in"));
   }
 
   /* ---------- Hero 3D mouse parallax ----------
@@ -98,25 +151,27 @@
      giving a gentle dimensional feel without WebGL. */
   if (!reduceMotion) {
     const hero = $(".hero");
-    const layers = $$(".hero__layer", hero);
-    if (hero && layers.length) {
-      hero.addEventListener("mousemove", (e) => {
-        const r = hero.getBoundingClientRect();
-        const cx = (e.clientX - r.left) / r.width - 0.5;
-        const cy = (e.clientY - r.top) / r.height - 0.5;
-        layers.forEach((el) => {
-          const z = parseFloat(el.dataset.z || 0);
-          const strength = z / 40;
-          const x = cx * 12 * strength;
-          const y = cy * 12 * strength;
-          el.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
+    if (hero) {
+      const layers = $$(".hero__layer", hero);
+      if (layers.length) {
+        hero.addEventListener("mousemove", (e) => {
+          const r = hero.getBoundingClientRect();
+          const cx = (e.clientX - r.left) / r.width - 0.5;
+          const cy = (e.clientY - r.top) / r.height - 0.5;
+          layers.forEach((el) => {
+            const z = parseFloat(el.dataset.z || 0);
+            const strength = z / 40;
+            const x = cx * 12 * strength;
+            const y = cy * 12 * strength;
+            el.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
+          });
         });
-      });
-      hero.addEventListener("mouseleave", () => {
-        layers.forEach((el) => {
-          el.style.transform = `translateZ(${el.dataset.z || 0}px)`;
+        hero.addEventListener("mouseleave", () => {
+          layers.forEach((el) => {
+            el.style.transform = `translateZ(${el.dataset.z || 0}px)`;
+          });
         });
-      });
+      }
     }
   }
 
@@ -139,7 +194,7 @@
   /* Reveal is owned by JS so the fallback is always available and the
      scroll-driven enhancement never leaves anything stuck invisible. */
   function playReveal() {
-    const items = $$("[data-reveal]");
+    const items = $$("[data-reveal], [data-enter]").filter((el) => !el.closest(".hero"));
     if (!items.length) return;
 
     const show = (el) => el.classList.add("is-in");
@@ -161,10 +216,16 @@
   }
 
   document.documentElement.classList.add("js");
-  playEntrance(document);
+
+  // Hero gets the orchestrated cinematic beat; everything else reveals on scroll.
+  const hero = $(".hero");
+  if (hero) cinematicIntro(hero);
+
   playReveal();
 
-  /* ---------- Scroll reveal ---------- */
+  /* ---------- Scroll reveal ----------
+     Handles [data-reveal] and any [data-enter] outside the hero,
+     revealed as they scroll into view. */
   const revealables = $$("[data-reveal]");
   if (revealables.length) {
     motionMQ.addEventListener("change", (e) => {
