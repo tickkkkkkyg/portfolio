@@ -1,7 +1,5 @@
 /* =========================================================
-   Portfolio — interactions
-   Motion follows the animation-motion skill: transform/opacity only,
-   named transitions, reduced-motion aware.
+   Portfolio — interactions (3D depth)
    ========================================================= */
 (function () {
   "use strict";
@@ -12,7 +10,6 @@
   let reduceMotion = reduceMotionMQ.matches;
 
   const EASE_OUT = "cubic-bezier(0.16, 1, 0.3, 1)";
-  const EASE_IN  = "cubic-bezier(0.55, 0, 1, 0.45)";
 
   /* ---------- Footer year ---------- */
   const year = $("#year");
@@ -33,7 +30,7 @@
     }
     requestAnimationFrame(cursorLoop);
 
-    $$("a, button, [data-magnetic]").forEach((el) => {
+    $$("a, button, [data-magnetic], .card, .blog-card").forEach((el) => {
       el.addEventListener("mouseenter", () => cursor.classList.add("is-hover"));
       el.addEventListener("mouseleave", () => cursor.classList.remove("is-hover"));
     });
@@ -46,11 +43,11 @@
         const r = el.getBoundingClientRect();
         const x = e.clientX - r.left - r.width / 2;
         const y = e.clientY - r.top - r.height / 2;
-        el.style.transform = `translate(${x * 0.22}px, ${y * 0.22}px)`;
+        el.style.transform = `translate(${x * 0.22}px, ${y * 0.22}px) translateZ(40px)`;
       });
       el.addEventListener("mouseleave", () => {
         el.animate(
-          [{ transform: el.style.transform }, { transform: "translate(0,0)" }],
+          [{ transform: el.style.transform }, { transform: "translate(0,0) translateZ(20px)" }],
           { duration: 320, easing: EASE_OUT },
         );
         el.style.transform = "";
@@ -58,21 +55,72 @@
     });
   }
 
-  /* ---------- Card tilt ---------- */
+  /* ---------- 3D card tilt with depth ---------- */
   if (!reduceMotion) {
     $$("[data-tilt]").forEach((card) => {
       card.addEventListener("mousemove", (e) => {
         const r = card.getBoundingClientRect();
         const x = (e.clientX - r.left) / r.width - 0.5;
         const y = (e.clientY - r.top) / r.height - 0.5;
-        card.style.transform = `perspective(900px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-4px)`;
+        card.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) translateZ(20px)`;
       });
       card.addEventListener("mouseleave", () => {
         card.animate(
-          [{ transform: card.style.transform }, { transform: "translateY(0)" }],
-          { duration: 320, easing: EASE_OUT },
+          [{ transform: card.style.transform }, { transform: "translateZ(0px)" }],
+          { duration: 400, easing: EASE_OUT },
         );
         card.style.transform = "";
+      });
+    });
+
+    // blog cards
+    $$(".blog-card").forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `perspective(900px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateZ(20px) translateY(-3px)`;
+      });
+      card.addEventListener("mouseleave", () => {
+        card.animate(
+          [{ transform: card.style.transform }, { transform: "translateZ(0px)" }],
+          { duration: 400, easing: EASE_OUT },
+        );
+        card.style.transform = "";
+      });
+    });
+  }
+
+  /* ---------- Hero parallax depth (mouse) ---------- */
+  const hero = $(".hero");
+  if (hero && !reduceMotion) {
+    const layers = [
+      { sel: ".hero__title", factor: 0.012 },
+      { sel: ".hero__subtitle", factor: 0.008 },
+      { sel: ".hero__eyebrow", factor: 0.02 },
+      { sel: ".hero__actions", factor: 0.01 },
+      { sel: ".hero__meta", factor: 0.006 },
+      { sel: ".hero__canvas", factor: -0.015 },
+      { sel: ".hero__glow", factor: -0.02 },
+    ].map((l) => ({ el: $(l.sel, hero), factor: l.factor })).filter((l) => l.el);
+
+    hero.addEventListener("mousemove", (e) => {
+      const r = hero.getBoundingClientRect();
+      const cx = (e.clientX - r.left) / r.width - 0.5;
+      const cy = (e.clientY - r.top) / r.height - 0.5;
+      layers.forEach((l) => {
+        const x = cx * 60 * l.factor * 10;
+        const y = cy * 60 * l.factor * 10;
+        l.el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      });
+    });
+    hero.addEventListener("mouseleave", () => {
+      layers.forEach((l) => {
+        l.el.animate(
+          [{ transform: l.el.style.transform }, { transform: "translate3d(0,0,0)" }],
+          { duration: 600, easing: EASE_OUT },
+        );
+        l.el.style.transform = "";
       });
     });
   }
@@ -133,20 +181,17 @@
   if (reduceMotion || !("IntersectionObserver" in window)) {
     revealables.forEach((el) => el.classList.add("is-in"));
   } else {
-    // Respect CSS scroll-driven animations: skip IO where supported
     const supportsScrollTimeline = CSS.supports("animation-timeline", "view()");
     if (!supportsScrollTimeline) {
       const io = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          const el = entry.target;
-          el.classList.add("is-in");
-          io.unobserve(el);
+          entry.target.classList.add("is-in");
+          io.unobserve(entry.target);
         });
       }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
       revealables.forEach((el) => io.observe(el));
     } else {
-      // scroll-driven handles it; just mark observed for safety
       revealables.forEach((el) => el.classList.add("is-in"));
     }
   }
@@ -232,7 +277,7 @@
     const ctx = canvas.getContext("2d");
     let w = 0, h = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
     const particles = [];
-    const COUNT = 60;
+    const COUNT = 50;
     let mx = -9999, my = -9999;
 
     function resize() {
@@ -248,44 +293,41 @@
       particles.push({
         x: Math.random() * w,
         y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        r: Math.random() * 1.4 + 0.6,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        r: Math.random() * 1.2 + 0.5,
       });
     }
 
-    const hero = $(".hero");
-    if (hero) {
-      hero.addEventListener("mousemove", (e) => {
-        const r = hero.getBoundingClientRect();
+    const heroEl = $(".hero");
+    if (heroEl) {
+      heroEl.addEventListener("mousemove", (e) => {
+        const r = heroEl.getBoundingClientRect();
         mx = e.clientX - r.left;
         my = e.clientY - r.top;
       });
-      hero.addEventListener("mouseleave", () => { mx = -9999; my = -9999; });
+      heroEl.addEventListener("mouseleave", () => { mx = -9999; my = -9999; });
     }
 
     function step() {
       ctx.clearRect(0, 0, w, h);
-      // update
       for (const p of particles) {
         p.x += p.vx; p.y += p.vy;
         if (p.x < 0 || p.x > w) p.vx *= -1;
         if (p.y < 0 || p.y > h) p.vy *= -1;
-        // mouse attraction
         const dx = mx - p.x, dy = my - p.y;
         const dist = Math.hypot(dx, dy);
         if (dist < 140 && dist > 0) {
-          p.x += dx * 0.008;
-          p.y += dy * 0.008;
+          p.x += dx * 0.006;
+          p.y += dy * 0.006;
         }
       }
-      // lines
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const a = particles[i], b = particles[j];
           const d = Math.hypot(a.x - b.x, a.y - b.y);
-          if (d < 110) {
-            ctx.strokeStyle = `rgba(79, 60, 201, ${0.18 * (1 - d / 110)})`;
+          if (d < 120) {
+            ctx.strokeStyle = `rgba(79, 60, 201, ${0.15 * (1 - d / 120)})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -294,9 +336,8 @@
           }
         }
       }
-      // dots
       for (const p of particles) {
-        ctx.fillStyle = "rgba(79, 60, 201, 0.55)";
+        ctx.fillStyle = "rgba(79, 60, 201, 0.5)";
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fill();
