@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name — Portfolio</title>
+  <meta name="description" content="Personal portfolio of Your Name — developer, builder, and problem solver." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>Y</text></svg>" />
+</head>
+<body>
+  <!-- Custom cursor -->
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+
+  <!-- Progress bar -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a href="#top" class="nav__brand">
+        <span class="nav__brand-mark">Y</span>
+        <span>Your Name</span>
+      </a>
+
+      <nav class="nav__links" id="navLinks">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <canvas class="hero__canvas" aria-hidden="true"></canvas>
+      <div class="container hero__inner">
+        <p class="hero__eyebrow reveal">
+          <span class="pulse"></span> Available for new projects
+        </p>
+
+        <h1 class="hero__title reveal">
+          Hi, I'm <span class="gradient-text">Your Name</span>.<br />
+          <span class="typewriter" data-words="I build things for the web.,I craft digital experiences.,I ship clean, working software."></span><span class="type-cursor" aria-hidden="true">|</span>
+        </h1>
+
+        <p class="hero__subtitle reveal">
+          I'm a <strong>software developer</strong> focused on crafting fast, accessible,
+          and delightful digital experiences. I turn messy ideas into clean, working software.
+        </p>
+
+        <div class="hero__actions reveal">
+          <a href="#work" class="btn btn--primary" data-magnetic>View my work</a>
+          <a href="#contact" class="btn btn--ghost" data-magnetic>Get in touch</a>
+        </div>
+
+        <div class="hero__meta reveal">
+          <div class="stat">
+            <span class="stat__num" data-count="5">0</span>
+            <span class="stat__label">Years experience</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num" data-count="40">0</span>
+            <span class="stat__label">Projects shipped</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num" data-count="12">0</span>
+            <span class="stat__label">Happy clients</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__scroll" aria-hidden="true">
+        <span>scroll</span>
+        <div class="hero__scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section class="section" id="work">
+      <div class="container">
+        <header class="section__head reveal">
+          <h2 class="section__title">Selected projects</h2>
+          <p class="section__desc">A few things I've designed, built, and shipped.</p>
+        </header>
+
+        <div class="grid grid--work">
+          <article class="card reveal" data-tilt>
+            <div class="card__media card__media--a">
+              <span class="card__badge">Web App</span>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title">Project One</h3>
+              <p class="card__text">
+                A short description of what this project does, the problem it solved,
+                and the impact it had. Replace this with the real story.
+              </p>
+              <ul class="tags">
+                <li>React</li><li>TypeScript</li><li>Postgres</li>
+              </ul>
+              <a class="card__link" href="#">View case study</a>
+            </div>
+          </article>
+
+          <article class="card reveal" data-tilt>
+            <div class="card__media card__media--b">
+              <span class="card__badge">Open Source</span>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title">Project Two</h3>
+              <p class="card__text">
+                A tool or library you maintain. Explain why you built it, who uses it,
+                and what makes it useful.
+              </p>
+              <ul class="tags">
+                <li>Python</li><li>CLI</li>
+              </ul>
+              <a class="card__link" href="#">View case study</a>
+            </div>
+          </article>
+
+          <article class="card reveal" data-tilt>
+            <div class="card__media card__media--c">
+              <span class="card__badge">Design</span>
+            </div>
+            <div class="card__body">
+              <h3 class="card__title">Project Three</h3>
+              <p class="card__text">
+                A design or product initiative. Describe the role you played and the
+                outcome you drove.
+              </p>
+              <ul class="tags">
+                <li>Figma</li><li>Design System</li>
+              </ul>
+              <a class="card__link" href="#">View case study</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about">
+      <div class="container about">
+        <div class="about__text">
+          <h2 class="section__title reveal">A bit about me</h2>
+          <p class="reveal">
+            I started out tinkering with code because I wanted to see how things worked.
+            That curiosity turned into a career building products for the web.
+          </p>
+          <p class="reveal">
+            These days I care deeply about <strong>performance</strong>, <strong>accessibility</strong>,
+            and writing code that the next person can actually understand. I believe the best
+            software feels invisible — it just works, and it's fast.
+          </p>
+          <p class="reveal">
+            Outside of work you'll find me hiking, reading,
+            or tinkering with a new side project that will probably never ship.
+          </p>
+          <a href="#" class="btn btn--ghost reveal" data-magnetic>Download résumé</a>
+        </div>
+
+        <aside class="about__card reveal">
+          <div class="avatar">YN</div>
+          <h3 class="about__name">Your Name</h3>
+          <p class="about__role">Developer · Designer · Human</p>
+
+          <ul class="facts">
+            <li><span>Based in</span><strong>Your City</strong></li>
+            <li><span>Focus</span><strong>Web &amp; Product</strong></li>
+            <li><span>Currently</span><strong>Building at Your Company</strong></li>
+            <li><span>Learning</span><strong>Rust</strong></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section section--inverse" id="skills">
+      <div class="container">
+        <h2 class="section__title reveal">Tools I reach for</h2>
+        <p class="section__desc reveal">Technologies and practices I work with every day.</p>
+
+        <div class="skills reveal">
+          <div class="skills__group">
+            <h3>Languages</h3>
+            <ul class="chips">
+              <li>JavaScript</li><li>TypeScript</li><li>Python</li><li>Go</li><li>SQL</li>
+            </ul>
+          </div>
+          <div class="skills__group">
+            <h3>Frontend</h3>
+            <ul class="chips">
+              <li>React</li><li>Next.js</li><li>Vue</li><li>Tailwind</li><li>HTML/CSS</li>
+            </ul>
+          </div>
+          <div class="skills__group">
+            <h3>Backend</h3>
+            <ul class="chips">
+              <li>Node.js</li><li>Postgres</li><li>Redis</li><li>Docker</li><li>Prisma</li>
+            </ul>
+          </div>
+          <div class="skills__group">
+            <h3>Practice</h3>
+            <ul class="chips">
+              <li>Testing</li><li>CI/CD</li><li>Code Review</li><li>Mentoring</li><li>Docs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section" id="contact">
+      <div class="container contact">
+        <div>
+          <h2 class="section__title reveal">Let's work together</h2>
+          <p class="contact__intro reveal">
+            Have a project, a question, or just want to say hi? My inbox is open.
+          </p>
+        </div>
+
+        <form class="form reveal" id="contactForm" novalidate>
+          <div class="form__row">
+            <label class="field">
+              <span>Name</span>
+              <input type="text" name="name" placeholder="Your name" required />
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </label>
+          </div>
+          <label class="field">
+            <span>Message</span>
+            <textarea name="message" rows="5" placeholder="Tell me about your project…" required></textarea>
+          </label>
+          <button class="btn btn--primary" type="submit" data-magnetic>Send message</button>
+          <p class="form__note" id="formNote" role="status"></p>
+        </form>
+      </div>
+      <div class="container">
+        <ul class="socials reveal">
+          <li><a href="#" aria-label="GitHub" data-magnetic>GitHub</a></li>
+          <li><a href="#" aria-label="LinkedIn" data-magnetic>LinkedIn</a></li>
+          <li><a href="#" aria-label="Twitter" data-magnetic>Twitter</a></li>
+          <li><a href="mailto:you@example.com" aria-label="Email" data-magnetic>Email</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year">2026</span> Your Name. All rights reserved.</p>
+      <p class="footer__built">Built with plain HTML, CSS &amp; JavaScript.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>
